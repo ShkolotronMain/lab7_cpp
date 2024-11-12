@@ -1,0 +1,111 @@
+{
+    "values": [
+        {
+            "code": "USD",
+            "currency": "Доллар США",
+            "fraction": 100,
+            "rate": 89.8225,
+            "state": "Соединённые Штаты Америки",
+            "subunit": "Цент",
+            "type": "classic"
+        },
+        {
+            "code": "AZN",
+            "currency": "Азербайджанский манат",
+            "fraction": 100,
+            "rate": 52.8368,
+            "state": "Азербайджан",
+            "subunit": "Гяпик",
+            "type": "classic"
+        },
+        {
+            "code": "CNY",
+            "currency": "Китайский юань",
+            "fraction": 100,
+            "rate": 12.5387,
+            "state": "Китай",
+            "subunit": "Фынь",
+            "type": "classic"
+        },
+        {
+            "code": "GBP",
+            "currency": "Фунт стерлингов Соединенного королевства",
+            "fraction": 100,
+            "rate": 118.1884,
+            "state": "Великобритания",
+            "subunit": "Пенни",
+            "type": "classic"
+        },
+        {
+            "code": "EUR",
+            "currency": "Евро",
+            "fraction": 100,
+            "rate": 99.7156,
+            "state": "Европейский Союз",
+            "subunit": "Цент",
+            "type": "classic"
+        },
+        {
+            "code": "TJS",
+            "currency": "Таджикский сомони",
+            "fraction": 100,
+            "rate": 8.42723,
+            "state": "Таджикистан",
+            "subunit": "Дирам",
+            "type": "classic"
+        },
+        {
+            "code": "DKK",
+            "currency": "Датская крона",
+            "fraction": 100,
+            "rate": 13.3595,
+            "state": "Дания",
+            "subunit": "Эре",
+            "type": "classic"
+        },
+        {
+            "code": "TON",
+            "currency": "Toncoin",
+            "fraction": 1,
+            "rate": 472.34,
+            "state": "The Open Network",
+            "subunit": " ",
+            "language": "C++",
+            "year": 2017,
+            "type": "crypto"
+        },
+        {
+            "code": "HMSTR",
+            "currency": "Hamster Kombat",
+            "fraction": 1,
+            "rate": 0.2532,
+            "state": "The Open Network",
+            "subunit": "",
+            "language": "C#",
+            "year": 2024,
+            "type": "crypto"
+        },
+        {
+            "code": "ETH",
+            "currency": "Ethereum",
+            "fraction": 1,
+            "rate": 243601.41,
+            "state": "Ethereum",
+            "subunit": "",
+            "language": "Go, Rust, C#, C++, etc.",
+            "year": 2015,
+            "type": "crypto"
+        },
+        {
+            "code": "DOGE",
+            "currency": "Dogecoin",
+            "fraction": 1,
+            "rate": 4.05,
+            "state": "Litecoin",
+            "subunit": "",
+            "language": "C++",
+            "year": 2013,
+            "type": "crypto"
+        }
+    ]
+}
