@@ -37,9 +37,9 @@ void Interpreter::get_command()
     else if (command == "write_json")
         write_json();
     else if (command == "print")
-        inout.print_all(*src);
+        inout.print_all(src);
     else if (command == "print_exp")
-        inout.print_exp(*src);
+        inout.print_exp(src);
     else if (command == "help")
         print_help();
     else if (command == "exit")
@@ -51,6 +51,37 @@ void Interpreter::get_command()
     {
         cout << "Неверная комманда" << endl;
         cout << "Для получения списка комманд введите help" << endl << endl;   
+    }
+}
+
+void Interpreter::pop() // FIXME
+{
+    int c;
+    cout << "Введите индекс удаляемого элемента: ";
+    cin >> c;
+    src->pop(c);
+}
+
+void Interpreter::add()
+{
+    cout << "Введите желаемый тип валюты" << endl;
+    cout << "1 - обычная" << endl;
+    cout << "2 - криптовалюта" << endl;
+    int num = 1;
+    cin >> num;
+    if (num == 1)
+    {
+        Classic* nc = new Classic();
+        nc->read();
+        src->add(nc);
+        cout << endl;
+    }
+    else if (num == 2)
+    {
+        Crypto* nc = new Crypto();
+        nc->read();
+        src->add(nc);
+        cout << endl;
     }
 }
 
@@ -67,46 +98,12 @@ void Interpreter::print_help()
     cout << "exit - выход" << endl << endl; 
 }
 
-void Interpreter::add()
-{
-    CourseIO* nc;
-    cout << "Введите желаемый тип валюты" << endl;
-    cout << "1 - обычная" << endl;
-    cout << "2 - криптовалюта" << endl;
-
-    int num = 1;
-    cin >> num;
-
-    if (num == 1)
-    {
-        nc = new Classic();
-        nc->read();
-        src->add((Course*)nc);
-        cout << endl;
-    }
-    else if (num == 2)
-    {
-        nc = new Crypto();
-        nc->read();
-        src->add((Course*)nc);
-        cout << endl;
-    }
-}
-
-void Interpreter::pop()
-{
-    int c;
-    cout << "Введите индекс удаляемого элемента: ";
-    cin >> c;
-    src->pop(c);
-}
-
 void Interpreter::read_json()
 {
     string path;
     cout << "Введите путь к файлу" << endl;
     cin >> path;
-    inout.json_read(path, *src);
+    inout.json_read(path, src);
     cout << endl;
 }
 

@@ -16,7 +16,6 @@ class Stock
         Stock();
         ~Stock();
 
-        CourseIO** get_mas_io() { return (CourseIO**)mas; }
         Course** get_mas() { return mas; }
         int get_cnt() { return cnt; }
 
