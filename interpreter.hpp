@@ -1,7 +1,7 @@
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
 
-#include "stock.hpp"
+#include "stockio.hpp"
 
 // Класс интерпретатора
 class Interpreter
@@ -9,10 +9,9 @@ class Interpreter
     private:
         Stock* src;
         bool running;
-        bool last;
+        StockIO inout;
 
         void get_command();
-        void prompt();
         void print_help();
 
         void add();

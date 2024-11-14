@@ -2,7 +2,6 @@
 #define COURSE_H
 
 #include <fstream>
-#include <iostream>
 #include "libraries/json.hpp"
 
 using namespace std;
@@ -20,15 +19,22 @@ protected:
     double rate;
 
 public:
-    // Получить объект в формате JSON
-    virtual json get_object() = 0;
-    // Геттер поля code
+    string get_currency() { return currency; }
+    string get_state() { return state; }
     string get_code() { return code; }
-    // Геттер поля rate
+    string get_subunit() { return subunit; }
+    int get_fraction() { return fraction; }
     double get_rate() { return rate; }
 
-    virtual void write() = 0;
-    virtual void read() = 0;
+    void set_currency(string cur) { currency = cur; }
+    void set_state(string cur) { state = cur; }
+    void set_code(string cur) { code = cur; }
+    void set_subunit(string cur) { subunit = cur; }
+    void set_fraction(int cur) { fraction = cur; }
+    void set_rate(double cur) { rate = cur; }
+
+    // Получить объект в формате JSON
+    virtual json get_object() = 0;
 };
 
 #endif

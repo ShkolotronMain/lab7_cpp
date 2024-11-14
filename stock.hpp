@@ -3,37 +3,28 @@
 
 #include "classic.hpp"
 #include "crypto.hpp"
+#include "courseio.hpp"
 
 // Класс-контейнер
 class Stock
 {
     private:
-        // Массив с курсами валют
         Course** mas;
-        // Количество элементов на рынке
         int cnt;
-
-        // Разница двух элементов на рынке
-        double diff(Course*, Course*);
 
     public:
         Stock();
         ~Stock();
+
+        CourseIO** get_mas_io() { return (CourseIO**)mas; }
+        Course** get_mas() { return mas; }
+        int get_cnt() { return cnt; }
+
+        void set_mas(Course** arg) { mas = arg; };
+        void set_cnt(int arg) { cnt = arg; };
         
-        bool pop(int);
+        void pop(int);
         void add(Course*);
-
-        bool read_from_json(string);
-        bool write_to_json(string);
-
-        void print_all();
-        bool print_exp();
-
-        // Запись в JSON
-        friend ofstream& operator<<(ofstream&, const Stock&);
-        
-        // Чтение из JSON
-        friend ifstream& operator>>(ifstream&, Stock&);
 };
 
 #endif

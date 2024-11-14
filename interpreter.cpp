@@ -4,7 +4,7 @@ Interpreter::Interpreter()
 {
     src = new Stock();
     running = 0;
-    last = 1;
+    inout = StockIO();
 }
 
 Interpreter::~Interpreter()
@@ -17,24 +17,13 @@ void Interpreter::loop()
     running = 1;
 
     while (running)
-    {
-        prompt();
         get_command();
-    }
-}
-
-void Interpreter::prompt()
-{
-    string c;
-    if (last)
-        c = "✅";
-    else
-        c = "❌";
-    cout << "[" << c << "]> ";
 }
 
 void Interpreter::get_command()
 {
+    cout << "[ INP ]> ";
+
     int res = 0;
     string command;
     cin >> command;
@@ -48,9 +37,9 @@ void Interpreter::get_command()
     else if (command == "write_json")
         write_json();
     else if (command == "print")
-        src->print_all();
+        inout.print_all(*src);
     else if (command == "print_exp")
-        src->print_exp();
+        inout.print_exp(*src);
     else if (command == "help")
         print_help();
     else if (command == "exit")
@@ -80,7 +69,7 @@ void Interpreter::print_help()
 
 void Interpreter::add()
 {
-    Course* nc;
+    CourseIO* nc;
     cout << "Введите желаемый тип валюты" << endl;
     cout << "1 - обычная" << endl;
     cout << "2 - криптовалюта" << endl;
@@ -92,17 +81,16 @@ void Interpreter::add()
     {
         nc = new Classic();
         nc->read();
-        src->add(nc);
+        src->add((Course*)nc);
         cout << endl;
     }
     else if (num == 2)
     {
         nc = new Crypto();
         nc->read();
-        src->add(nc);
+        src->add((Course*)nc);
         cout << endl;
     }
-    // delete nc;
 }
 
 void Interpreter::pop()
@@ -110,7 +98,7 @@ void Interpreter::pop()
     int c;
     cout << "Введите индекс удаляемого элемента: ";
     cin >> c;
-    last = src->pop(c);
+    src->pop(c);
 }
 
 void Interpreter::read_json()
@@ -118,7 +106,7 @@ void Interpreter::read_json()
     string path;
     cout << "Введите путь к файлу" << endl;
     cin >> path;
-    last = src->read_from_json(path);
+    inout.json_read(path, *src);
     cout << endl;
 }
 
@@ -127,6 +115,6 @@ void Interpreter::write_json()
     string path;
     cout << "Введите путь к файлу" << endl;
     cin >> path;
-    last = src->write_to_json(path);
+    inout.json_write(path, *src);
     cout << endl;
 }

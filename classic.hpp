@@ -2,8 +2,9 @@
 #define CLASSIC_H
 
 #include "course.hpp"
+#include "courseio.hpp"
 
-class Classic : public Course
+class Classic : public Course, public CourseIO
 {
     public:
         Classic();
