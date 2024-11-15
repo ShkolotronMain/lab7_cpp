@@ -54,7 +54,7 @@ void Interpreter::get_command()
     }
 }
 
-void Interpreter::pop() // FIXME
+void Interpreter::pop()
 {
     int c;
     cout << "Введите индекс удаляемого элемента: ";
