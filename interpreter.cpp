@@ -9,7 +9,7 @@ Interpreter::Interpreter()
 
 Interpreter::~Interpreter()
 {
-
+    delete src;
 }
 
 void Interpreter::loop()
