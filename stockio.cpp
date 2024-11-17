@@ -5,6 +5,11 @@ double StockIO::diff(Course* left, Course* right)
     return (left->get_rate() - right->get_rate());
 }
 
+bool StockIO::if_usd(Course* arg)
+{
+    return (arg->get_code() == "USD");
+}
+
 void StockIO::print_all(Stock* src)
 {
     for (int i=0; i<src->get_cnt(); i++)
@@ -56,8 +61,12 @@ void StockIO::print_exp(Stock* src)
     }
 }
 
-void StockIO::json_read(string path, Stock* src)
+void StockIO::json_read(Stock* src)
 {
+    string path;
+    cout << "Введите путь к файлу" << endl;
+    cin >> path;
+
     ifstream in(path);
     if (in.is_open())
     {
@@ -88,10 +97,16 @@ void StockIO::json_read(string path, Stock* src)
     {
         cerr << "Ошибка открытия файла" << endl;
     }
+
+    cout << endl;
 }
 
-void StockIO::json_write(string path, Stock src)
+void StockIO::json_write(Stock& src)
 {
+    string path;
+    cout << "Введите путь к файлу" << endl;
+    cin >> path;
+
     ofstream out(path);
     if (out.is_open())
     {
@@ -110,4 +125,52 @@ void StockIO::json_write(string path, Stock src)
     {
         cerr << "Ошибка открытия файла" << endl;
     }
+
+    cout << endl;
+}
+
+void StockIO::add_console(Stock* src)
+{
+    cout << "Введите желаемый тип валюты" << endl;
+    cout << "1 - обычная (по умол.)" << endl;
+    cout << "2 - криптовалюта" << endl;
+    int num = 1;
+    cin >> num;
+
+    Course* nc;
+
+    if (num != 2)
+    {
+        nc = new Classic();
+        static_cast<Classic*>(nc)->read();
+    }
+    else
+    {
+        nc = new Crypto();
+        static_cast<Crypto*>(nc)->read();
+    }
+
+    src->add(nc);
+
+    cout << endl;
+}
+
+void StockIO::pop_console(Stock* src)
+{
+    string code;
+    cout << "Введите код удаляемого элемента: ";
+    cin >> code;
+
+    bool is_found=0;
+
+    for (int i=0; i<src->get_cnt() && !is_found; i++)
+    {
+        if (src->get_mas()[i]->get_code() == code)    
+        {
+            src->pop(i);
+            is_found = 1;
+        }
+    }
+
+    cout << endl;
 }

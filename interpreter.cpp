@@ -29,13 +29,13 @@ void Interpreter::get_command()
     cin >> command;
 
     if (command == "add")
-        add();
+        inout.add_console(src);
     else if (command == "pop")
-        pop();
+        inout.pop_console(src);
     else if (command == "read_json")
-        read_json();
+        inout.json_read(src);
     else if (command == "write_json")
-        write_json();
+        inout.json_write(*src);
     else if (command == "print")
         inout.print_all(src);
     else if (command == "print_exp")
@@ -54,37 +54,6 @@ void Interpreter::get_command()
     }
 }
 
-void Interpreter::pop()
-{
-    int c;
-    cout << "Введите индекс удаляемого элемента: ";
-    cin >> c;
-    src->pop(c);
-}
-
-void Interpreter::add()
-{
-    cout << "Введите желаемый тип валюты" << endl;
-    cout << "1 - обычная" << endl;
-    cout << "2 - криптовалюта" << endl;
-    int num = 1;
-    cin >> num;
-    if (num == 1)
-    {
-        Classic* nc = new Classic();
-        nc->read();
-        src->add(nc);
-        cout << endl;
-    }
-    else if (num == 2)
-    {
-        Crypto* nc = new Crypto();
-        nc->read();
-        src->add(nc);
-        cout << endl;
-    }
-}
-
 void Interpreter::print_help()
 {
     cout << "Список доступных комманд: " << endl;
@@ -96,22 +65,4 @@ void Interpreter::print_help()
     cout << "print_exp - вывести те, которые дороже USD" << endl;
     cout << "help - список команд" << endl;
     cout << "exit - выход" << endl << endl; 
-}
-
-void Interpreter::read_json()
-{
-    string path;
-    cout << "Введите путь к файлу" << endl;
-    cin >> path;
-    inout.json_read(path, src);
-    cout << endl;
-}
-
-void Interpreter::write_json()
-{
-    string path;
-    cout << "Введите путь к файлу" << endl;
-    cin >> path;
-    inout.json_write(path, *src);
-    cout << endl;
 }

@@ -16,34 +16,25 @@ Stock::~Stock()
     cnt = 0;
 }
 
-void Stock::pop(int index)
+void Stock::pop(int c)
 {
-    if (index>=0 && index < cnt)
-    {
-        int old_cnt = cnt;
-        cnt--;
-        Course** new_mas = new Course*[cnt];
-        
-        for (int i=0, j=0; i<old_cnt; i++)
-            if (i != index)
-            {
-                new_mas[j] = mas[i];
-                j++;
-            }
+    int old_cnt = cnt;
+    cnt--;
+    Course** new_mas = new Course*[cnt];
+    
+    for (int i=0, j=0; i<old_cnt; i++)
+        if (i != c)
+        {
+            new_mas[j] = mas[i];
+            j++;
+        }
 
-        Course** old_mas = mas;
-        mas = new_mas;
-        delete[] old_mas;
-
-        cout << "Элемент удалён" << endl;
-    }
-    else
-    {
-        cerr << "Элемент с заданным индексом не существует" << endl;
-    }
+    Course** old_mas = mas;
+    mas = new_mas;
+    delete[] old_mas;
 }
 
-void Stock::add(Course* ptr)
+void Stock::add(Course* nc)
 {
     cnt++;
     Course** new_mas = new Course*[cnt];
@@ -53,5 +44,5 @@ void Stock::add(Course* ptr)
     mas = new_mas;
     delete[] old_mas;
 
-    mas[cnt-1] = ptr;
+    mas[cnt-1] = nc;
 }

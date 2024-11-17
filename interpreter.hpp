@@ -14,12 +14,6 @@ class Interpreter
         void get_command();
         void print_help();
 
-        void read_json();
-        void write_json();
-
-        void add();
-        void pop();
-
     public:
         Interpreter();
         ~Interpreter();
